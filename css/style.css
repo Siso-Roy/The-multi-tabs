@@ -1,0 +1,25 @@
+#board{
+    background-color: #a9a9a9;
+    border: 2px solid greenyellow;
+    display: block;
+    margin: 0 auto;
+}
+#menuDiv{
+    width: 100px;
+    position: fixed;
+    border: 1px solid #1e90ff;
+    background-color: #6495ed;
+    padding: 0;
+    display: none;
+}
+#menu{
+    padding: 10px 10px;
+}
+#menu li{
+    list-style: none;
+    width: 80px;
+}
+#menu li:hover{
+    cursor: pointer;
+    background-color: #1e90ff;
+}
