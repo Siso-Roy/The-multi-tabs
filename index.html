@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>The Multiple tabs</title>
 </head>
 <body>
 
@@ -22,145 +22,21 @@
 
     <!--EaselJS CDN-->
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+    <script src="js/main.js" type="text/javascript"></script>
 
-    <!--<script src="js/main.js" type="text/javascript"></script>-->
-    <script type="text/javascript">
-
-        function init() {
-
-            var isMenuDisplayed = false;
-            var menuOption = null;
-            var canvas = document.getElementById("board");
-            var stage = new createjs.Stage(canvas);
-
-            canvas.addEventListener("contextmenu", function (ev) {
-
-                //mouse cursor coordinates
-                var x = ev.clientX;
-                var y = ev.clientY;
-                //set the context menu position
-                menuOption = window.document.querySelector("#menuDiv");
-                menuOption.style.left = x + "px";
-                menuOption.style.top = y + "px";
-                menuOption.style.display = "block";
-                ev.preventDefault();
-                isMenuDisplayed = true;
-
-                window.addEventListener("click", function () {
-
-                    //get correct menu option has be selected
-                    var list = document.getElementById("menu");
-                    for (var i = 0, len = list.children.length; i < len; i++){(
-                        function(index){
-                            list.children[i].onclick = function(){
-                                console.log(index);
-                                if(index == 0){
-                                    drawTriangle(x - canvas.offsetLeft, y - canvas.offsetTop, stage);
-                                }
-                                else if(index == 1){
-                                    drawCircle(x - canvas.offsetLeft, y - canvas.offsetTop, stage);
-                                }
-                                else if(index == 2) {
-                                    drawSquare(x - canvas.offsetLeft, y - canvas.offsetTop, stage);
-                                }
-                                else {
-                                    stage.removeAllChildren();
-                                    stage.update();
-                                }
-                            }
-                        })(i);
-                    }
-                },true);
-
-            }, false);
-
-            window.addEventListener("click", function () {
-                if(isMenuDisplayed == true){
-                    menuOption.style.display = "none";
-                }
-            }, true);
-
-        }
-
-        //This function is for adding new tab for multi tasking
-        function addNewTab() {
-            //add a tab as default when the page is loaded
-            var int = document.getElementById("tabs").childElementCount;
-            alert("add new task"+int);
-
-            var divTag = document.createElement("button");
-            divTag.className = 'tab';
-            divTag.id = 'tab'+int;
-            var node = document.createTextNode("Tab "+int);
-            divTag.appendChild(node);
-            document.getElementById("tabs").appendChild(divTag);
-            createNewCanvas();
-        }
-
-        //this is to add new canvas to the board
-        //......
-        // This better to use the xml to store every element is contained in the canvas
-        // The canvas when saved will also with id
-        // When switch between different tab will retrieve all elements in the particular canvas
-        //......
-//        function createNewCanvas() {
-//            var canvas = document.createElement("canvas");
-//            console.log(canvas);
-////            document.getElementsByName("body").appendChild(canvas);
-//            document.getElementById("canvas_stack").appendChild(canvas);
-//        }
-
-        //functions for drawing shapes
-        function drawTriangle(shapeX, shapeY, stage) {
-            var graphics = new createjs.Graphics();
-
-            graphics.beginFill("#f44141");
-            graphics.beginStroke("#85f441");
-            graphics.drawPolyStar(shapeX, shapeY, 50, 3, 0, -60);
-
-            var shape = new createjs.Shape(graphics);
-
-            stage.addChild(shape);
-            stage.update();
-        }
-
-        function drawCircle(shapeX, shapeY, stage) {
-            var graphics = new createjs.Graphics();
-
-            graphics.beginFill("#d341f4");
-            graphics.beginStroke("#f46d41");
-            graphics.drawCircle(shapeX, shapeY, 50, 50);
-
-            var shape = new createjs.Shape(graphics);
-
-            stage.addChild(shape);
-            stage.update();
-        }
-
-        function drawSquare(shapeX, shapeY, stage) {
-            var graphics = new createjs.Graphics();
-
-            graphics.beginFill("#41f4f1");
-            graphics.beginStroke("#f441bb");
-            graphics.drawRect(shapeX, shapeY, 100, 100);
-
-            var shape = new createjs.Shape(graphics);
-
-            stage.addChild(shape);
-            stage.update();
-        }
-    </script>
 </head>
-<body onload="init();">
+<!--<body onload="init();">-->
+<body onload="createCanvas(1);">
+
 
 <div id="canvas_stack">
-    <canvas id="board" style="border: 1px dashed red" width="600" height="600"></canvas>
+    <!--<canvas id="board" style="border: 1px dashed red" width="600" height="600"></canvas>-->
 </div>
 
 <!-- manage tabs -->
 <div id="tabs">
     <button class="tab" id="add_new_tab" onClick="addNewTab()">+</button>
-    <button class="tab" id="tab1" >Tab 1</button>
+    <button class="tab" id="tab1" onClick="switchCanvas(1)">Tab 1</button>
 </div>
 
 
