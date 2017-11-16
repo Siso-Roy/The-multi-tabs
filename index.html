@@ -31,6 +31,31 @@
 
 <div id="canvas_stack">
     <!--<canvas id="board" style="border: 1px dashed red" width="600" height="600"></canvas>-->
+
+    <div id="info_panel">
+        <form>
+            Name:<br>
+            <input type="text" name="nameInput" id="name" onKeyDown=" changeName();"><br>
+            <br>
+            Description:<br>
+            <input type="text" style="height:200px;font-size:11pt" name="desInput" id="des" onKeyDown="if (event.keyCode == 13) changeDes();"><br>
+            <br>
+            Connection:<br>
+            <select>
+                <option value="type">Type</option>
+                <option value="dir">Direct</option>
+                <option value="sim">Simutaniously</option>
+            </select><br>
+            <br>
+            <select>
+                <option value="parent">Parent</option>
+            </select><br>
+            <br>
+            Pseudocode:<br>
+            <input type="text" style="height:200px;font-size:11pt" name="psuInput" id="psu" onKeyDown="if (event.keyCode == 13) changePsu();"><br>
+            <button id="submit">Submit</button>
+        </form>
+    </div>
 </div>
 
 <!-- manage tabs -->
@@ -42,9 +67,7 @@
 
 <div id="menuDiv">
     <ul id="menu">
-        <li>Triangle</li>
-        <li>Circle</li>
-        <li>Square</li>
+        <li>Add new Method</li>
         <li>Clear</li>
     </ul>
 </div>

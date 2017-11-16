@@ -1,9 +1,9 @@
-#board{
-    background-color: #a9a9a9;
-    border: 2px solid greenyellow;
-    display: block;
-    margin: 0 auto;
-}
+/*#board{*/
+     /*background-color: #a9a9a9;*/
+     /*border: 2px solid greenyellow;*/
+     /*display: block;*/
+     /*margin: 0 auto;*/
+ /*}*/
 #menuDiv{
     width: 100px;
     position: fixed;
@@ -28,7 +28,19 @@ canvas{
     width:600px;
     height: 600px;
     border: 2px dashed red;
+    display: block;
+    margin: 0 auto;
+}
+#canvas_1{
+    display: none;
 }
 #canvas_2{
     background-color: crimson;
+}
+
+#info_panel{
+    width: 240px;
+    border: 2px dashed #F7FF00;
+    float: right;
+    margin-right: 50px;
 }

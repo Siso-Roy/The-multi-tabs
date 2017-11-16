@@ -1,20 +1,25 @@
 
 
 window.canvasStack = [];
-var test = "is this var a gloable";
 
-function init() {
+function action() {
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!
+    //check if is correct canvas before drawing anything
+
 
     var isMenuDisplayed = false;
     var menuOption = null;
-    var canvas = document.getElementById("board");
+    var canvas = document.getElementById("canvas_2");
     var stage = new createjs.Stage(canvas);
+
 
     canvas.addEventListener("contextmenu", function (ev) {
 
         //mouse cursor coordinates
         var x = ev.clientX;
         var y = ev.clientY;
+        console.log("the cursor position: x-"+x+" y-"+y);
         //set the context menu position
         menuOption = window.document.querySelector("#menuDiv");
         menuOption.style.left = x + "px";
@@ -30,15 +35,13 @@ function init() {
             for (var i = 0, len = list.children.length; i < len; i++){(
                 function(index){
                     list.children[i].onclick = function(){
-                        console.log(index);
+                        console.log("the index of which you pressed: "+index);
                         if(index == 0){
-                            drawTriangle(x - canvas.offsetLeft, y - canvas.offsetTop, stage);
-                        }
-                        else if(index == 1){
-                            drawCircle(x - canvas.offsetLeft, y - canvas.offsetTop, stage);
-                        }
-                        else if(index == 2) {
-                            drawSquare(x - canvas.offsetLeft, y - canvas.offsetTop, stage);
+                            // drawMethod(x, y, stage);
+                            var rect = canvas.getBoundingClientRect();
+                            // drawMethod((x-rect.left), (y-rect.top), stage);
+                            drawMethod(x, y, stage);
+
                         }
                         else {
                             stage.removeAllChildren();
@@ -75,11 +78,7 @@ function addNewTab() {
 
 }
 
-//      The canvas object
-//        * create canvas object for each tab
-//            - iterate through all canvas objects are opened and set the canvas display attribute
-//            -
-//        * array of method objects and other related objects(such as, different connections)
+// create canvas for each tab
 function createCanvas(id){
 
     console.log("before push object to the array..."+window.canvasStack.length);
@@ -100,8 +99,12 @@ function createCanvas(id){
 
 function switchCanvas(tabID) {
     console.log("which tab is pressed "+tabID);
-}
 
+    if(tabID == 2){
+
+        action();
+    }
+}
 
 function methodInfo(name, description){
     var name = name;
@@ -109,41 +112,25 @@ function methodInfo(name, description){
 
 }
 
+function changeName(){
 
-
-//      Functions for drawing shapes
-function drawTriangle(shapeX, shapeY, stage) {
-    var graphics = new createjs.Graphics();
-
-    graphics.beginFill("#f44141");
-    graphics.beginStroke("#85f441");
-    graphics.drawPolyStar(shapeX, shapeY, 50, 3, 0, -60);
-
-    var shape = new createjs.Shape(graphics);
-
-    stage.addChild(shape);
-    stage.update();
 }
 
-function drawCircle(shapeX, shapeY, stage) {
+//* array of method objects and other related objects(such as, method box, different connections)
+function drawMethod(shapeX, shapeY, stage) {
+
+    var weith = 100;
+    var height = 30;
+
+    console.log("the method runs to here... x:"+shapeX+" y:"+shapeY);
+
     var graphics = new createjs.Graphics();
 
-    graphics.beginFill("#d341f4");
-    graphics.beginStroke("#f46d41");
-    graphics.drawCircle(shapeX, shapeY, 50, 50);
+    graphics.beginFill("#0008FF");
+    // graphics.beginStroke("#f441bb");
+    // graphics.drawRect(shapeX/3, shapeY/3, weith, height);
+    graphics.drawRect(0, 0, 100, 30);
 
-    var shape = new createjs.Shape(graphics);
-
-    stage.addChild(shape);
-    stage.update();
-}
-
-function drawSquare(shapeX, shapeY, stage) {
-    var graphics = new createjs.Graphics();
-
-    graphics.beginFill("#41f4f1");
-    graphics.beginStroke("#f441bb");
-    graphics.drawRect(shapeX, shapeY, 100, 100);
 
     var shape = new createjs.Shape(graphics);
 
